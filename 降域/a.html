@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>降域a</title>
+	<style type="text/css">
+		.ct{
+			width: 910px;
+			margin: auto;
+		}
+
+		.clearfix:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+
+		.main{
+			float: left;
+			width: 450px;
+			height: 300px;
+			border: 1px solid #ccc;
+		}
+
+		.main input{
+			margin: 20px;
+			width: 200px;
+		}
+
+		.iframe{
+			float: right;
+		}
+
+		iframe{
+			width: 450px;
+			height: 300px;
+			border: 1px dashed #ccc;
+		}
+	</style>
+</head>
+<body>
+	<div class="ct clearfix">
+		<h1>使用降域实现跨域</h1>
+		<div class="main">
+			<input type="text" placeholder="http://a.ji.com:8080/a.html">
+		</div>
+
+		<iframe src="http://b.ji.com:8080/b.html" frameborder="0"></iframe>
+	</div>
+
+	<script type="text/javascript">
+		document.querySelector('.main input').addEventListener('input',function(){
+			console.log(this.value);
+			window.frame[0].document.querySelector('input').value = this.value;
+		})
+
+		document.domain ='ji.com'
+	</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>news</title>
+	<style type="text/css">
+		.container{
+			width: 900px;
+			maigin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul class="news">
+		</ul>
+		<button class="show">show news</button>
+	</div>
+
+	<script type="text/javascript">
+		$('.show').addEventListener('click',function(){
+			var script = document.createElement('script');
+			script.src = 'http://b.ji.com:8080/getNews?callback=appendHtml';
+			document.body.appendChild(script);
+			document.body.removeChild(script);
+		})
+
+		function appendHtml(news){
+			var html = '';
+			for( var i=0; i<news.length; i++){
+				html += '<li>' + news[i] + '</li>'
+			}
+			console.log(html);
+			$('.news').innerHTML = html
+		}
+
+		function $(id){
+			return document.querySelector(id);
+		}
+	</script>
+</body>
+</html>
